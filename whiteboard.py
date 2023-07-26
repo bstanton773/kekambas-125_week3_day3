@@ -11,11 +11,23 @@
 # Input: ransomNote = "aa", magazine = "aab"
 # Output: true
 
+ransom = "Hello"
+magazine = "Help!"
+
 def solution(ransom, magazine):
     magazine_letters = list(magazine)
     for letter in ransom:
         if letter in magazine_letters:
             magazine_letters.remove(letter)
         else:
+            return False
+    return True
+
+from collections import Counter
+def solution(ransom, magazine):
+    ransom_count = Counter(ransom)
+    magazine_count = Counter(magazine)
+    for letter, count in ransom_count.items():
+        if magazine_count.get(letter, 0) < count:
             return False
     return True
